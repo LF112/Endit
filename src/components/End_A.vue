@@ -1,54 +1,46 @@
 <template>
-    <div class="End_A">
-        <div id="End_A"></div>
+  <div class="End_A">
+    <div id="End_A">
+      <Endit_Card v-for="item in list" :key="item.name"
+                  :date="item[1]" :repo_name="item[0]" :introduction="item[2]" :author="item[3]" :star="item[5]" :pic="item[4]"/>
     </div>
+  </div>
 </template>
 
 <script>
-import Endit_Show from './show'
+  import Endit_Card from './EnditCard'
 
-export default {
-  name: 'End_A',
-  components: {
-      
-  },
-  mounted() {
-    this.bus.$on('Endit_CardListA', data => {
-        for(let i = 0; i < data.length; i++){
-            Endit_Show({
-                props: {
-                    date: data[i][1],
-                    repo_name: data[i][0],
-                    introduction: data[i][2],
-                    author: data[i][3],
-                    star: data[i][5],
-                    pic: data[i][4]
-                }
-            }, 'End_A')
-        }
-    })
+  export default {
+    name: 'End_A',
+    components: {
+      Endit_Card
+    },
+    props: {
+      list: Array
+    },
+    mounted() {
+    }
   }
-}
 
 </script>
 
 <style>
 
-main .Container>div .End_A {
+  main .Container>div .End_A {
     position: relative;
     width: 45%;
     display: flex;
     align-items: center;
     justify-content: flex-end;
     float: left;
-}
+  }
 
-.End_A>div {
+  .End_A>div {
     margin-top: 145px;
-}
+  }
 
-.End_A .Endit_Card {
+  .End_A .Endit_Card {
     margin-bottom: 305px;
-}
+  }
 
 </style>

@@ -42,7 +42,7 @@ export default {
       repo_name: String,
       introduction: String,
       author: String,
-      star: String,
+      star: [Number, String],
       pic: String
   }
 }
