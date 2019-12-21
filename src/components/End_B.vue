@@ -1,72 +1,74 @@
 <template>
-    <div class="End_B">
-        <div id="End_B"></div>
+  <div class="End_B">
+    <div id="End_B">
+      <Endit_Card
+        v-for="item in list"
+        :key="item.name"
+        :date="item[1]"
+        :repo_name="item[0]"
+        :introduction="item[2]"
+        :author="item[3]"
+        :star="item[5]"
+        :pic="item[4]"
+      />
     </div>
+  </div>
 </template>
 
 <script>
-import Endit_Show from './show'
+  /* eslint-disable */
+  import Endit_Card from './EnditCard'
 
-export default {
-  name: 'End_B',
-  components: {
-      
-  },
-  mounted() {
-    this.bus.$on('Endit_CardListB', data => {
-        for(let i = 0; i < data.length; i++){
-            Endit_Show({
-                props: {
-                    date: data[i][1],
-                    repo_name: data[i][0],
-                    introduction: data[i][2],
-                    author: data[i][3],
-                    star: data[i][5],
-                    pic: data[i][4]
-                }
-            }, 'End_B')
-        }
-    })
+  export default {
+    name: 'End_A',
+    components: {
+      Endit_Card
+    },
+    props: {
+      list: Array
+    },
+    mounted() {
+    }
   }
-}
+
 </script>
 
 <style>
 
-main .Container>div .End_B {
+  main .Container>div .End_B {
     position: relative;
     width: 45%;
     float: left;
-}
+  }
 
-.End_B .Endit_Card {
+  .End_B .Endit_Card {
     margin-top: 305px;
-}
+  }
 
-.End_B .Endit_Card .Time {
+  .End_B .Endit_Card .Time {
     left: 0;
-}
+  }
 
-.End_B .Endit_Card .Time>div p {
+  .End_B .Endit_Card .Time>div p {
     margin-left: 5px;
     margin-right: 0;
-}
+  }
 
-.End_B .Endit_Card .Repo {
+  .End_B .Endit_Card .Repo {
     right: 15px;
     left: auto;
-}
+  }
 
-.End_B .Endit_Card .Sidebar {
+  .End_B .Endit_Card .Sidebar {
     left: 0;
     border-radius: 4px 0 0 4px;
-}
+  }
 
-.End_B .Endit_Card .Sidebar .Foo>div p {
+  .End_B .Endit_Card .Sidebar .Foo>div p {
     text-align: left;
     padding-right: 0;
     padding-left: 10px;
-}
+  }
 
 
 

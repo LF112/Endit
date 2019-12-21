@@ -2,11 +2,9 @@
   <main>
     <div class="Container">
       <div>
-
-        <End_A />
+        <End_A :list="A"/>
         <AxisLF />
-        <End_B />
-
+        <End_B :list="B"/>
       </div>
     </div>
     <Footer />
@@ -18,17 +16,7 @@ import End_A from './End_A'
 import End_B from './End_B'
 import Footer from './Footer'
 import AxisLF from './AxisLF'
-import EnditConfig from './endit'
-
-var A = [], B = []
-for (let i = 0; i < EnditConfig.index.length; i++){
-
-    if (i%2 == 0) 
-      A.push(EnditConfig.index[i])
-    else 
-      B.push(EnditConfig.index[i])
-
-}
+import EnditConfig from '../endit'
 
 export default {
   name: 'Main',
@@ -38,9 +26,22 @@ export default {
     Footer,
     AxisLF
   },
-  mounted(){
-    this.bus.$emit('Endit_CardListA', A)
-    this.bus.$emit('Endit_CardListB', B)
+  data(){
+    return {
+      A: [],
+      B: []
+    }
+  },
+  beforeMount() {
+    let A = [], B = []
+    for (let i = 0; i < EnditConfig.index.length; i++){
+      if (i%2 === 0)
+        A.push(EnditConfig.index[i])
+      else
+        B.push(EnditConfig.index[i])
+    }
+    this.A = A;
+    this.B = B;
   }
 }
 
